@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>Nhận dạng Tiếng Việt</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="description" content="Ngọc Quang - Hoàng Quyên HCMUS">
+    <meta name="keywords" content="Speech To Text, Regconition,Vietnamese, Regconize">
+    <meta name="author" content="Ngọc Quang - Hoàng Quyên">
+    <!-- Meta FB -->
+    <meta property="og:title" content="Nhận dạng âm thanh Tiếng Việt - Vietnamese Speech Recognition" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://product.vnspeechrecognition.com" />
+    <meta property="og:image" content="assets/images/og.png" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="300" />
+    <link rel="icon" href="assets/images/favicon.ico">
+    <meta property="og:site_name" content="Vietnamese Speech Recognition" />
+
+    <!-- Hotjar Tracking Code for http://html.codedthemes.com/treva/bootstrap/index-tf.html -->
+    <script>
+        (function(h, o, t, j, a, r) {
+            h.hj = h.hj || function() {
+                (h.hj.q = h.hj.q || []).push(arguments)
+            };
+            h._hjSettings = {
+                hjid: 1628297,
+                hjsv: 6
+            };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script');
+            r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/plugins/dropify.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/daterangepicker.css">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/vendor-all.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/plugins/PNotifyBrightTheme.css">
+    <link rel="stylesheet" href="assets/css/plugins/trumbowyg.min.css">
+    <script src="assets/js/plugins/dropify.min.js"></script>
+    <!--  -->
+    <link href="/assets/css/wave.css" rel="stylesheet">
+    <script src="/assets/js/video.min.js"></script>
+    <script src="/assets/js/RecordRTC.js"></script>
+    <!-- <script src="js/adapter.js"></script> -->
+    <script src="/assets/js/wavesurfer.min.js"></script>
+    <script src="/assets/js/wavesurfer.microphone.min.js"></script>
+    <script src="/assets/js/videojs.wavesurfer.min.js"></script>
+    <script src="/assets/js/videojs.record.min.js"></script>
+    <script src="/assets/js/browser-workarounds.js"></script>
+
+</head>
+
+<body class="">
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <!-- [ Pre-loader ] End -->
+    <!-- [ navigation menu ] start -->
+    <nav class="pcoded-navbar dashboard-nav menupos-fixed ">
+        <div class="navbar-wrapper  ">
+            <div class="navbar-content scroll-div ">
+                <ul class="nav pcoded-inner-navbar ">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Danh Mục</label>
+                    </li>
+                    <li class="nav-item"><a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-tachometer-alt"></i></span><span class="pcoded-mtext">Trang chủ</span></a></li>
+                    <li class="nav-item">
+                        <a href="./assets/wav/FPTOpenSpeechData_Set002_V0.1_010349.wav" target="_blank" class="nav-link "><span class="pcoded-micon"><i class="fas fa-history"></i></span><span class="pcoded-mtext">Âm thanh mẫu</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-history"></i></span><span class="pcoded-mtext">Lịch sử</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-sitemap"></i></span><span class="pcoded-mtext">Hướng dẫn sử dụng</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-file-invoice"></i></span><span class="pcoded-mtext">Trợ giúp</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fab fa-dev"></i></span><span class="pcoded-mtext">API</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-user-tie"></i></span><span class="pcoded-mtext">Đội ngữ phát triển</span></a>
+                    </li>
+                </ul>
+                <div class="card text-center">
+                    <div class="card-block">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <i class="far fa-life-ring f-40"></i>
+                        <h6 class="mt-3">Giúp đỡ</h6>
+                        <p>Hãy liên hệ với chúng tôi để yêu cầu sự giúp đỡ</p>
+                        <a href="#!" target="_blank" class="btn btn-primary btn-sm text-white m-0">Support</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <header class="navbar pcoded-header navbar-expand-lg navbar-light headerpos-fixed brand-dark ">
+        <div class="m-header">
+            <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
+            <a href="index.html" class="b-brand">
+                <img src="assets/images/logo.png" alt="" class="logo">
+            </a>
+            <a href="#!" class="mob-toggler">
+                <i class="feather icon-more-vertical"></i>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
+                            <i class="feather icon-monitor mx-2"></i>
+                            <span class="d-none d-sm-inline-block">Phím tắt</span>
+                        </a>
+                        <!-- <div class="dropdown-menu profile-notification ">
+                            <ul class="pro-body">
+                                <li><a href="adm-dashboard.html" class="dropdown-item"><i class="fas fa-circle"></i> Dashboard</a></li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </li>
+                <li class="nav-item d-inline-block d-md-none">
+                    <a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
+                    <div class="search-bar">
+                        <div class="nav-search">
+                            <div class="filter-block">
+                                <input type="text" class="form-control input nav-search border-0 shadow-none" placeholder="Search" tabindex="-1" data-search="menu-list">
+                                <ul class="link-list dropdown-menu"></ul>
+                            </div>
+                        </div>
+                        <button type="button" class="close" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+                    </div>
+                </li>
+                <li class="nav-item h-auto d-none d-md-inline-block">
+                    <div class="input-group search-form">
+                        <div class="nav-search">
+                            <div class="filter-block">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-transparent"><i class="feather icon-search"></i></span>
+                                </div>
+                                <input type="text" class="form-control input nav-search" placeholder="Search" tabindex="-1" data-search="menu-list">
+                                <ul class="link-list dropdown-menu"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li>
+                    <div class="dropdown drp-user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="assets/images/avatar.jpg" class="img-radius" alt="User-Profile-Image">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right profile-notification">
+                            <ul class="pro-body">
+                                <li><a href="#" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
+                                <li><a href="#" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="pcoded-main-container">
+        <div class="pcoded-content container">
+            <!-- [ Main Content ] start -->
+            <div class="row">
+                <div class="col-sm-4">
+                    <h2 class="font-weight-normal">Chào Trần Ngọc</h2>
+                    <br>
+                </div>
+                <div class="col-sm-8 center">
+                    <h2 class="font-weight-bold">Chuyển đổi âm thanh sang văn bản</h2>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-body text-center" style="position: relative;">
+                                    <h2 class="font-weight-normal">Tổng quan mô hình âm thanh</h2>
+                                    <div id="sm_chart" style="min-height: 147.371px;">
+                                    </div>
+                                    <h5 class="text-success">25%<i class="mr-2 ml-1 feather icon-arrow-down"></i><small class="text-body">tỉ lệ lỗi từ</small></h5>
+                                    <div class="resize-triggers">
+                                        <div class="expand-trigger">
+                                            <div style="width: 342px; height: 223px;"></div>
+                                        </div>
+                                        <div class="contract-trigger"></div>
+                                    </div>
+                                    <div class="resize-triggers">
+                                        <div class="expand-trigger">
+                                            <div style="width: 342px; height: 223px;"></div>
+                                        </div>
+                                        <div class="contract-trigger"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body text-center" style="position: relative;">
+                                    <h2 class="font-weight-normal">Tổng quan mô hình ngôn ngữ</h2>
+                                    <div id="lm_chart" style="min-height: 147.371px;">
+                                    </div>
+                                    <!-- <h5 class="text-success">25%<i class="mr-2 ml-1 feather icon-arrow-down"></i><small class="text-body">tỉ lệ lỗi từ</small></h5> -->
+                                    <div class="resize-triggers">
+                                        <div class="expand-trigger">
+                                            <div style="width: 342px; height: 223px;"></div>
+                                        </div>
+                                        <div class="contract-trigger"></div>
+                                    </div>
+                                    <div class="resize-triggers">
+                                        <div class="expand-trigger">
+                                            <div style="width: 342px; height: 223px;"></div>
+                                        </div>
+                                        <div class="contract-trigger"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body" style="padding-bottom: 0px;">
+                            <h2 class="font-weight-normal mb-4">Ghi âm giọng nói</h2>
+                            <div class="row align-items-center">
+                                <div class="datta-example">
+                                    <audio id="audioWave" class="video-js vjs-default-skin"></audio>
+                                    <div class="inputSelector">
+                                        <label>Select audio input: </label>
+                                        <select id="selector"></select>
+                                    </div>
+
+                                </div>
+                                <script>
+                                    var devices, deviceId;
+                                    var options = {
+                                        controls: true,
+                                        width: 600,
+                                        height: 150,
+                                        fluid: false,
+                                        plugins: {
+                                            wavesurfer: {
+                                                backend: 'WebAudio',
+                                                waveColor: '#6fffe9',
+                                                progressColor: '#2E732D',
+                                                debug: true,
+                                                src: 'live',
+                                                cursorWidth: 1,
+                                                hideScrollbar: true,
+                                                height: 240,
+                                                plugins: [
+                                                    WaveSurfer.microphone.create({
+                                                        bufferSize: 4096,
+                                                        numberOfInputChannels: 1,
+                                                        numberOfOutputChannels: 1,
+                                                        constraints: {
+                                                            video: false,
+                                                            audio: true
+                                                        }
+                                                    })
+                                                ]
+                                            },
+                                            record: {
+                                                audio: true,
+                                                video: false,
+                                                maxLength: 20000,
+                                                displayMilliseconds: true,
+                                                debug: false,
+                                            }
+                                        }
+                                    };
+                                    var inputSection = document.getElementsByClassName('inputSelector')[0];
+
+                                    // apply some workarounds for certain browsers
+                                    applyAudioWorkaround();
+                                    var player = videojs('audioWave', options, function() {
+                                        // print version information at startup
+                                        var msg = 'Using video.js ' + videojs.VERSION +
+                                            ' with videojs-record ' + videojs.getPluginVersion('record') +
+                                            ', videojs-wavesurfer ' + videojs.getPluginVersion('wavesurfer') +
+                                            ', wavesurfer.js ' + WaveSurfer.VERSION + ' and recordrtc ' +
+                                            RecordRTC.version;
+                                        videojs.log(msg);
+                                    });
+                                    player.one('deviceReady', function() {
+                                        player.record().enumerateDevices();
+                                    });
+                                    player.on('enumerateReady', function() {
+                                        devices = player.record().devices;
+                                        var inputSelector = document.getElementById('selector');
+                                        inputSelector.addEventListener('change', changeAudioInput);
+                                        var deviceInfo, option, i;
+                                        for (i = 0; i !== devices.length; ++i) {
+                                            deviceInfo = devices[i];
+                                            option = document.createElement('option');
+                                            option.value = deviceInfo.deviceId;
+                                            if (deviceInfo.kind === 'audioinput') {
+                                                console.info('Found audio input device: ', deviceInfo.label);
+                                                option.text = deviceInfo.label || 'input device ' +
+                                                    (inputSelector.length + 1);
+                                                inputSelector.appendChild(option);
+                                            }
+                                        }
+                                        if (inputSelector.length == 0) {
+                                            // no output devices found, disable select
+                                            option = document.createElement('option');
+                                            option.text = 'No audio input devices found';
+                                            option.value = undefined;
+                                            inputSelector.appendChild(option);
+                                            inputSelector.disabled = true;
+                                            console.warn(option.text);
+                                        } else {
+                                            console.info('Total input devices found:', inputSelector.length);
+                                        }
+                                        inputSection.style.display = 'block';
+                                    });
+
+                                    function changeAudioInput(event) {
+                                        var label = event.target.options[event.target.selectedIndex].text;
+                                        deviceId = event.target.value;
+                                        try {
+                                            player.record().setAudioInput(deviceId);
+                                            console.log("Changed audio input to '" + label + "' (deviceId: " +
+                                                deviceId + ")");
+                                        } catch (error) {
+                                            console.warn(error);
+                                            event.target.selectedIndex = 0;
+                                        }
+                                    }
+
+                                    // error handling
+                                    player.on('enumerateError', function() {
+                                        console.warn('enumerate error:', player.enumerateErrorCode);
+                                    });
+                                    player.on('deviceError', function() {
+                                        console.warn('device error:', player.deviceErrorCode);
+                                    });
+                                    player.on('error', function(element, error) {
+                                        console.error(error);
+                                    });
+                                    player.on('startRecord', function() {
+                                        console.log('started recording!');
+                                    });
+                                    player.on('finishRecord', function() {
+                                        console.log('finished recording: ', player.recordedData);
+                                    });
+                                </script>
+                            </div>
+                            <hr class="my-4">
+                            <div class="row">
+                                <form style="display:none"></form>
+                                <div class="datta-example">
+                                    <input type="file" id="wavfileUpload" class="dropify" />
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#wavfileUpload').dropify({
+                                                messages: {
+                                                    'default': '<span>Kéo thả hoặc </span><button type="button" class="btn px-md-5 mt-3 btn-primary">Tải lên từ máy tính</button>',
+                                                    'replace': "Kéo thả hoặc tải lên để thay thế",
+                                                    'maxFileSize': 5000,
+                                                    'remove': "Gỡ",
+                                                    'error': "Đã có lỗi xảy ra"
+                                                },
+                                                error: {
+                                                    'fileSize': 'Kích thước file quá lớn',
+                                                    'fileExtension': "Định dạng tệp tin không hỗ trợ, chỉ hỗ trợ wav.",
+                                                    'error': "Đã có lỗi xảy ra",
+                                                },
+                                                allowedFileExtensions: ["wav", "mp3", "webm"]
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="datta-example">
+                            <button type="button" class="btn btn-outline-success" mask="recording" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Nhận dạng ghi âm</button>
+                            <button type="button" class="btn btn-outline-success" mask="uploadfile" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Nhận dạng tập tin</button>
+                        </div>
+                    </div>
+                    <div id="result-block" class="card">
+                        <div class="card-header not-padding-bottom">
+                            <h3 class="font-weight-normal"> Kết quả </h3>
+                        </div>
+                        <div class="card-body">
+                            <textarea id="result-editor">
+                            </textarea>
+                            <button id="nhandangfpt" type="button" class="btn btn-outline-secondary" style="display: none;width: 100%;"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Nhận dạng FPT</button>
+                        </div>
+                    </div>
+                    <div class="card" id="suggest" style="display: none;">
+                        <div class="card-header not-padding-bottom">
+                            <h3 class="font-weight-normal"> Gợi ý</h3>
+                        </div>
+                        <div class="card-body">
+                            <textarea id="fpt-editor">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="font-weight-normal mb-2">Thống kê sử dụng</h2>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center justify-content-between mb-4">
+                                <h4 class="font-weight-normal mb-0">Truy cập theo ngày</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <p class="text-uppercase">Truy cập</p>
+                                    <div class="media align-items-center">
+                                        <h1 class="display-4 d-inline-block">{{data.today[0]}}</h1>
+                                        <div class="media-body ml-2">
+                                            <h5 class="text-danger">{{data.increase[0]}}<i class="mr-2 ml-1 feather icon-arrow-{% if data.increase[0] < 0 %}down{% else %}up{% endif %}"></i></h5>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-4">
+                                    <p class="text-uppercase">VNSR</p>
+                                    <div class="media align-items-center">
+                                        <h1 class="display-4 d-inline-block">{{data.today[1]}}</h1>
+                                        <div class="media-body ml-2">
+                                            <h5 class="text-success">{{data.increase[1]}}<i class="mr-2 ml-1 feather icon-arrow-{% if data.increase[1] < 0 %}down{% else %}up{% endif %}"></i></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <p class="text-uppercase">FPT</p>
+                                    <div class="media align-items-center">
+                                        <h1 class="display-4 d-inline-block">{{data.today[2]}}</h1>
+                                        <div class="media-body ml-2">
+                                            <h5 class="text-success">{{data.increase[2]}}<i class="mr-2 ml-1 feather icon-arrow-{% if data.increase[2] < 0 %}down{% else %}up{% endif %}"></i></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="progress mt-2" style="height:8px;">
+                                <div class="progress-bar bg-danger" role="progressbar" style="width: 60%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: 39%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 1%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="row mt-3 mb-3">
+                                <div class="col">
+                                    <span class=""><i class="fas fa-circle text-danger f-10 m-r-5"></i>API VNSR</span>
+                                </div>
+                                <div class="col">
+                                    <span class=""><i class="fas fa-circle text-warning f-10 m-r-5"></i>API FPT</span>
+                                </div>
+                                <div class="col">
+                                    <span class=""><i class="fas fa-circle text-success f-10 m-r-5"></i>Lỗi</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body" style="position: relative;">
+                            <div class="row align-items-center justify-content-between mb-4">
+                                <h4 class="font-weight-normal mb-0">Tổng truy cập</h4>
+                            </div>
+                            <div id="visittotal" class="my-4" style="min-height: 168.976px;">
+
+                            </div>
+                            <div>
+                                <p class="mb-3"><i class="fas fa-circle text-c-blue f-10 m-r-10"></i>Tổng truy cập<span class="float-right h6 mb-0 text-body" id="total_visit">{{data.total[0]}}</span></p>
+                                <p class="mb-3"><i class="fas fa-circle text-c-green f-10 m-r-10"></i>Nhận dạng VNSR<span class="float-right h6 mb-0 text-body" id="total_visit_vnsr">{{data.total[1]}}</span></p>
+                                <p class="mb-3"><i class="fas fa-circle text-c-red f-10 m-r-10"></i>Nhận dạng FPT<span class="float-right h6 mb-0 text-body" id="total_visit_fpt">{{data.total[2]}}</span></p>
+                            </div>
+                            <div class="resize-triggers">
+                                <div class="expand-trigger">
+                                    <div style="width: 408px; height: 512px;"></div>
+                                </div>
+                                <div class="contract-trigger"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="assets/js/plugins/bootstrap.min.js"></script>
+    <script src="assets/js/pcoded.min.js"></script>
+    <script src="assets/js/menu-setting.js"></script>
+    <script src="assets/js/plugins/apexcharts.min.js"></script>
+    <script src="assets/js/plugins/moment.min.js"></script>
+    <script src="assets/js/plugins/daterangepicker.js"></script>
+    <script>
+        $(function() {
+            var sm_chart_ptions = {
+                chart: {
+                    type: 'radialBar',
+                    offsetY: -20,
+                    sparkline: {
+                        enabled: true
+                    },
+                },
+                plotOptions: {
+                    radialBar: {
+                        startAngle: -90,
+                        endAngle: 90,
+                        track: {
+                            background: "#D7DFE9",
+                            strokeWidth: '97%',
+                            margin: 5, // margin is in pixels
+                            shadow: {
+                                enabled: true,
+                                top: 2,
+                                left: 0,
+                                color: '#999',
+                                opacity: 1,
+                                blur: 2
+                            }
+                        },
+                        dataLabels: {
+                            value: {
+                                offsetY: -40,
+                                fontSize: '22px'
+                            }
+                        }
+                    }
+                },
+                colors: ['#FFB800'],
+                fill: {
+                    type: 'solid',
+                },
+                series: [75],
+                labels: ['Độ chính xác'],
+            }
+            var lm_chart_ptions = {
+                chart: {
+                    type: 'radialBar',
+                    offsetY: -20,
+                    sparkline: {
+                        enabled: true
+                    },
+                },
+                plotOptions: {
+                    radialBar: {
+                        startAngle: -90,
+                        endAngle: 90,
+                        track: {
+                            background: "#D7DFE9",
+                            strokeWidth: '97%',
+                            margin: 5,
+                            shadow: {
+                                enabled: true,
+                                top: 2,
+                                left: 0,
+                                color: '#999',
+                                opacity: 1,
+                                blur: 2
+                            }
+                        },
+                        dataLabels: {
+                            value: {
+                                offsetY: -40,
+                                fontSize: '22px'
+                            }
+                        }
+                    }
+                },
+                colors: ['#FFB800'],
+                fill: {
+                    type: 'solid',
+                },
+                series: [85],
+                labels: ['Độ chính xác'],
+            }
+            var sm_chart = new ApexCharts(document.querySelector("#sm_chart"), sm_chart_ptions);
+            var lm_chart = new ApexCharts(document.querySelector("#lm_chart"), lm_chart_ptions);
+            sm_chart.render();
+            lm_chart.render();
+        });
+    </script>
+    <script src="assets/js/plugins/trumbowyg.min.js"></script>
+    <script src="assets/js/prevent.js"></script>
+    <script src="assets/js/plugins/PNotify.js"></script>
+    <script src="assets/js/plugins/PNotifyButtons.js"></script>
+    <script src="assets/js/plugins/PNotifyCallbacks.js"></script>
+    <script src="assets/js/plugins/PNotifyDesktop.js"></script>
+    <script src="assets/js/plugins/PNotifyConfirm.js"></script>
+    <script src="assets/js/pages/notify-event.js"></script>
+    <script>
+        var info = PNotify.info({
+            title: 'Chức năng ghi âm',
+            text: 'Ghi âm webm chưa convert thành wav nên chưa chuyển đổi được',
+            delay: 2000
+
+        });
+        var info2 = PNotify.info({
+            title: 'Phiên bản thử nghiệm',
+            text: 'Âm thanh đầu vào có thể cần được chuẩn hóa ở các phiển bản tiếp theo',
+            delay: 4000
+
+        });
+        var info3 = PNotify.info({
+            title: 'Âm thanh mẫu',
+            text: 'Âm thanh mẫu up tạm thời file, click sidebar bên trái mục Âm thanh mẫu',
+            delay: 6000
+
+        });
+    </script>
+    <script>
+        var total = {
+            {
+                data.total[0]
+            }
+        };
+        var vnsr = {
+            {
+                data.total[1]
+            }
+        };
+        var fpt = {
+            {
+                data.total[2]
+            }
+        };
+        var doNothing = total - vnsr - fpt;
+        $("#total_visit")[0].innerHTML = total;
+        $("#total_visit_fpt")[0].innerHTML = fpt;
+        $("#total_visit_vnsr")[0].innerHTML = vnsr;
+        var options = {
+            chart: {
+                height: 200,
+                type: 'donut',
+                sparkline: {
+                    enabled: true
+                },
+            },
+            labels: ['VNSR', 'FPT', 'F5'],
+            series: [vnsr, fpt, doNothing],
+            colors: ["#4680ff", "#0e9e4a", "#00acc1"],
+            legend: {
+                show: true,
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '75%',
+                        labels: {
+                            show: true,
+                            name: {
+                                show: true
+                            },
+                            value: {
+                                show: true
+                            }
+                        },
+                    }
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                textAnchor: 'middle',
+                distributed: false,
+                offsetY: 10,
+                style: {
+                    colors: ['#123124'],
+                },
+            },
+        }
+        var chart = new ApexCharts(document.querySelector("#visittotal"), options);
+        chart.render();
+        $(window).on('load', function() {
+            $('#result-editor').trumbowyg({
+                svgPath: 'assets/css/plugins/icons.svg',
+                btns: [
+                    ['viewHTML'],
+                    ['undo', 'redo'],
+                    ['formatting'],
+                    ['strong', 'em', 'del'],
+                    ['superscript', 'subscript'],
+                    ['link'],
+                    ['insertImage'],
+                    ['unorderedList', 'orderedList'],
+                    ['horizontalRule'],
+                    ['removeformat'],
+                    ['fullscreen']
+                ]
+            });
+            $('#fpt-editor').trumbowyg({
+                svgPath: 'assets/css/plugins/icons.svg',
+                btns: [
+                    ['viewHTML'],
+                    ['undo', 'redo'],
+                    ['formatting'],
+                    ['strong', 'em', 'del'],
+                    ['superscript', 'subscript'],
+                    ['link'],
+                    ['insertImage'],
+                    ['unorderedList', 'orderedList'],
+                    ['horizontalRule'],
+                    ['removeformat'],
+                    ['fullscreen']
+                ]
+            });
+        });
+    </script>
+
+</body>
+
+</html>
