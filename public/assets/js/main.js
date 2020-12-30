@@ -9,11 +9,9 @@ $(function() {
     })
     socket.on('UpdateEnty', function(today_data, total_data) {
         console.log('enty')
-
         var total_today = today_data[0];
         var vnsr_today = today_data[1];
         var fpt_today = today_data[2];
-
         var doNothing = total_data[0] - total_data[1] - total_data[2];
         $("#total_visit")[0].innerHTML = total_data[0];
         $("#total_visit_fpt")[0].innerHTML = total_data[2];
@@ -72,6 +70,7 @@ $(function() {
                         addclass: 'alert bg-primary alert-styled-left',
                         delay: 4000
                     });
+                    console.log('Emit FPT');
                     socket.emit('increaseFPT')
                 } else {
                     PNotify.alert({

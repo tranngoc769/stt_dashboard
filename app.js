@@ -86,6 +86,41 @@ io.on('connection', async function(socket) {
         await socket.emit('UpdateEnty', today, total)
         console.log("Finish")
     })
+
+    socket.on('increaseFPT', async function() {
+        console.log("Increase FPT")
+        let ts = Date.now();
+        let date_ob = new Date(ts);
+        let date = date_ob.getDate();
+        let month = date_ob.getMonth() + 1;
+        let year = date_ob.getFullYear()
+        var rows = await model.selectDate(date, month, year);
+        var total = []
+        var today = []
+            // Lấy dữ liệu theo ngày
+        if (rows.length == 0) {
+            let sql = `INSERT INTO visitor (visit,vnsr, fpt,date) VALUES (1, 1, 0, '${date}-${month}-${year}')`
+            let ress = await model.updateVisit(sql);
+            today = [1, 0, 0]
+        } else {
+            let today_id = rows[0].id;
+            let toDay_total = rows[0].visit;
+            let toDay_vnsr = rows[0].vnsr;
+            let toDay_fpt = rows[0].fpt + 1;
+            let sql = `UPDATE visitor SET  fpt  = ${toDay_fpt} WHERE id = ${today_id}`
+            let ress = await model.updateVisit(sql)
+            today = [toDay_total, toDay_vnsr, toDay_fpt]
+        }
+        // Lấy total
+        var tt_row = await model.getTotal()
+        if (tt_row.length == 0) {
+            total = [1, 1, 0];
+        } else {
+            total = [tt_row[0].visit, tt_row[0].vnsr, tt_row[0].fpt]
+        }
+        await socket.emit('UpdateEnty', today, total)
+        console.log("Finish")
+    })
 });
 
 // START
