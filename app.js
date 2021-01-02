@@ -26,7 +26,7 @@ app.get('/', async function(req, res) {
     var dataToday = []
     var dataIncre = []
     var dataTotal = []
-    if (rows.length < 0) {
+    if (rows.length == 0) {
         dataToday = [1, 0, 0];
         dataIncre = [1, 0, 0];
     } else {
