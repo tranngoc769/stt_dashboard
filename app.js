@@ -29,6 +29,8 @@ app.get('/', async function(req, res) {
     if (rows.length == 0) {
         dataToday = [1, 0, 0];
         dataIncre = [1, 0, 0];
+        sqlIn = `INSERT INTO visitor ( visit ,  vnsr ,  fpt  ,   date ) VALUES ( 1, 0, 0, '${date}-${month}-${year}')`;
+        await model.updateVisit(sqlIn);
     } else {
         dataToday = [rows[0].visit + 1, rows[0].vnsr, rows[0].fpt]
         var updateCurrent = `UPDATE visitor  SET  visit  = ${rows[0].visit+1} where id  = ${rows[0].id}`
