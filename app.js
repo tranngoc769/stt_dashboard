@@ -29,7 +29,7 @@ app.get('/', async function(req, res) {
     if (rows.length == 0) {
         dataToday = [1, 0, 0];
         dataIncre = [1, 0, 0];
-        sqlIn = `INSERT INTO visitor ( visit ,  vnsr ,  fpt  ,   date ) VALUES ( 1, 0, 0, '${date}-${month}-${year}')`;
+        sqlIn = `INSERT INTO visitor ( visit ,  vnsr ,  fpt  ,   date ) VALUES ( 1, 0, 0, '${year}-${month}-${date}')`;
         await model.updateVisit(sqlIn);
     } else {
         dataToday = [rows[0].visit + 1, rows[0].vnsr, rows[0].fpt]
@@ -66,7 +66,7 @@ io.on('connection', async function(socket) {
         var today = []
             // Lấy dữ liệu theo ngày
         if (rows.length == 0) {
-            let sql = `INSERT INTO visitor (visit,vnsr, fpt,date) VALUES (1, 1, 0, '${date}-${month}-${year}')`
+            let sql = `INSERT INTO visitor (visit,vnsr, fpt,date) VALUES (1, 1, 0, '${year}-${month}-${date}')`
             let ress = await model.updateVisit(sql);
             today = [1, 0, 0]
         } else {
@@ -101,7 +101,7 @@ io.on('connection', async function(socket) {
         var today = []
             // Lấy dữ liệu theo ngày
         if (rows.length == 0) {
-            let sql = `INSERT INTO visitor (visit,vnsr, fpt,date) VALUES (1, 1, 0, '${date}-${month}-${year}')`
+            let sql = `INSERT INTO visitor (visit,vnsr, fpt,date) VALUES (1, 1, 0, '${year}-${month}-${date}')`
             let ress = await model.updateVisit(sql);
             today = [1, 0, 0]
         } else {

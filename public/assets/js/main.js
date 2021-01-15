@@ -1,4 +1,4 @@
-const server = 'http://80b86b335329.ngrok.io/'
+const server = 'http://fa0c0af6c75f.ngrok.io/'
 $(function() {
     var socket = io();
     socket.on('connect', function() {
