@@ -45,7 +45,7 @@
 </head>
 
 <body class="">
-    <nav class="pcoded-navbar dashboard-nav menupos-fixed ">
+    <nav class="pcoded-navbar dashboard-nav menupos-fixed navbar-collapsed">
         <div class="navbar-wrapper  ">
             <div class="navbar-content scroll-div ">
                 <ul class="nav pcoded-inner-navbar ">
@@ -403,16 +403,16 @@
                 <div class="col-12">
                     <h2 class="font-weight-normal mb-2">Thống kê sử dụng</h2>
                 </div>
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-4 col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="row align-items-center justify-content-between mb-4">
                                 <h4 class="font-weight-normal mb-0">Truy cập theo ngày</h4>
                             </div>
                             <div class="row">
-                                <div class="col-4">
-                                    <p class="text-uppercase">Truy cập</p>
-                                    <div class="media align-items-center">
+                                <div class="col-6" style="margin: 0 auto;">
+                                    <div class="media align-items-center" style="margin: 0 auto;">
+                                    <div class="media align-items-center" style="margin: 0 auto;">
                                         <h1 class="display-4 d-inline-block">
                                             <%= today[0]%>
                                         </h1>
@@ -421,10 +421,23 @@
                                                 <div class="today"><%= increase[0]%></div><i class="mr-2 ml-1 feather icon-arrow-<% if (increase[0] <0) { %>down<%} else { %>up<% } %>"></i></h5>
                                         </div>
                                     </div>
+                                    </div>
                                 </div>
-                                <div class="col-4">
-                                    <p class="text-uppercase">VNSR</p>
-                                    <div class="media align-items-center">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center justify-content-between mb-4">
+                                <h4 class="font-weight-normal mb-0">Sử dụng API theo ngày</h4>
+                            </div>
+                            <div class="row">
+                                <div class="col-6" style="margin: 0 auto;">
+                                    <div class="media align-items-center" style="margin: 0 auto;">
+                                    <div class="media align-items-center" style="margin: 0 auto;">
                                         <h1 class="display-4 d-inline-block">
                                             <%= today[1]%>
                                         </h1>
@@ -434,57 +447,34 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <p class="text-uppercase">FPT</p>
-                                    <div class="media align-items-center">
-                                        <h1 class="display-4 d-inline-block">
-                                            <%= today[2]%>
-                                        </h1>
-                                        <div class="media-body ml-2">
-                                            <h5 class="text-success">
-                                                <div class="today"><%= increase[2]%></div><i class="mr-2 ml-1 feather icon-arrow-<% if (increase[1] <0) { %>down<%} else { %>up<% } %>"></i></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="progress mt-2" style="height:8px;">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 60%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 39%;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 1%;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <div class="row mt-3 mb-3">
-                                <div class="col">
-                                    <span class=""><i class="fas fa-circle text-danger f-10 m-r-5"></i>API VNSR</span>
-                                </div>
-                                <div class="col">
-                                    <span class=""><i class="fas fa-circle text-warning f-10 m-r-5"></i>API FPT</span>
-                                </div>
-                                <div class="col">
-                                    <span class=""><i class="fas fa-circle text-success f-10 m-r-5"></i>Lỗi</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-4 col-md-12">
                     <div class="card">
                         <div class="card-body" style="position: relative;">
-                            <div class="row align-items-center justify-content-between mb-4">
-                                <h4 class="font-weight-normal mb-0">Tổng truy cập</h4>
-                            </div>
-                            <div id="visittotal" class="my-4" style="min-height: 168.976px;">
-
-                            </div>
-                            <div>
-                                <p class="mb-3"><i class="fas fa-circle text-c-blue f-10 m-r-10"></i>Tổng truy cập<span class="float-right h6 mb-0 text-body" id="total_visit"><%= total[0]%></span></p>
-                                <p class="mb-3"><i class="fas fa-circle text-c-green f-10 m-r-10"></i>Nhận dạng VNSR<span class="float-right h6 mb-0 text-body" id="total_visit_vnsr"><%= total[1]%></span></p>
-                                <p class="mb-3"><i class="fas fa-circle text-c-red f-10 m-r-10"></i>Nhận dạng FPT<span class="float-right h6 mb-0 text-body" id="total_visit_fpt"><%= total[2]%></span></p>
-                            </div>
-                            <div class="resize-triggers">
-                                <div class="expand-trigger">
-                                    <div style="width: 408px; height: 512px;"></div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="row align-items-center justify-content-between mb-4">
+                                    <h4 class="font-weight-normal mb-0">Tổng truy cập</h4>
                                 </div>
-                                <div class="contract-trigger"></div>
+                                <div id="visittotal" style="min-height: 168.976px;">
+                                </div>
+                            </div>
+                               <div class="col-lg-6 col-md-12">
+                                <div class="row align-items-center justify-content-between mb-4">
+                                </div>
+                                    <p class="mb-3"><i class="fas fa-circle text-c-blue f-10 m-r-10"></i>Tổng truy cập<span class="float-right h6 mb-0 text-body" id="total_visit"><%= total[0]%></span></p>
+                                    <p class="mb-3"><i class="fas fa-circle text-c-green f-10 m-r-10"></i>Nhận dạng VNSR<span class="float-right h6 mb-0 text-body" id="total_visit_vnsr"><%= total[1]%></span></p>
+                                </div>
+                                <div class="resize-triggers">
+                                    <div class="expand-trigger">
+                                        <div style="width: 408px; height: 512px;"></div>
+                                    </div>
+                                    <div class="contract-trigger"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -508,22 +498,20 @@
     <script>
         var total = <%= total[0]%>;
         var vnsr = <%= total[1]%>;
-        var fpt = <%= total[2]%>;
-        var doNothing = total - vnsr - fpt;
+        var doNothing = total - vnsr;
         $("#total_visit")[0].innerHTML = total;
-        $("#total_visit_fpt")[0].innerHTML = fpt;
         $("#total_visit_vnsr")[0].innerHTML = vnsr;
         var options = {
             chart: {
-                height: 200,
+                height: 165,
                 type: 'donut',
                 sparkline: {
                     enabled: true
                 },
             },
-            labels: ['VNSR', 'FPT', 'F5'],
-            series: [vnsr, fpt, doNothing],
-            colors: ["#4680ff", "#0e9e4a", "#00acc1"],
+            labels: ['VNSR', 'F5'],
+            series: [vnsr, doNothing],
+            colors: ["#4680ff", "#00acc1"],
             legend: {
                 show: true,
             },
