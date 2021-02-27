@@ -158,6 +158,29 @@ $(function() {
             }
         });
     });
+
+    $('img[name="download_record"]').on('click', function() {
+        console.log(player.recordedData);
+        var blob = player.recordedData;
+        if (blob != undefined) {
+            var a = document.createElement("a");
+            document.body.appendChild(a);
+            a.style = "display: none";
+            url = window.URL.createObjectURL(blob);
+            a.href = url;
+            a.download = blob.name;
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+
+        } else {
+            var ero = PNotify.error({
+                title: 'Chưa ghi âm',
+                text: 'Thực hiện ghi âm',
+                delay: 2000
+            });
+        }
+    });
     $('button[name="pnotify-progress"]').on('click', function() {
         $("#suggest").css("display", "none")
         $("#nhandangfpt").css("display", "none")

@@ -88,7 +88,7 @@
     <header class="navbar pcoded-header navbar-expand-lg navbar-light headerpos-fixed brand-dark ">
         <div class="m-header">
             <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-            <a href="index.html" class="b-brand">
+            <a href="/" class="b-brand">
                 <img src="assets/images/logo.png" alt="" class="logo">
             </a>
             <a href="#!" class="mob-toggler">
@@ -160,20 +160,25 @@
         <div class="pcoded-content container">
             <!-- [ Main Content ] start -->
             <div class="row">
-                <div class="col-sm-4">
-                    <h2 class="font-weight-normal">Chào Trần Ngọc</h2>
-                    <br>
-                </div>
-                <div class="col-sm-8 center">
-                    <h2 class="font-weight-bold">Chuyển đổi âm thanh sang văn bản</h2>
-                    <br>
-                </div>
+                <div class="col-lg-6" style="display:flex">
+                    <h4 style="min-width: 130px;margin: auto 0px;">Chọn mô hình:</h4>
+                    <select id="models" class="form-control">
+                        <option value="1">Mô hình dataset FPT</option>
+                        <option value="2">Mô hình dataset VinBigData</option>
+                        <option value="3">Mô hình dataset FPT ft VinBigData</option>
+                    </select>
+                    </div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card" style="height:95%">
                         <div class="card-body" style="margin-bottom: 20px;padding-bottom: 0px;">
-                            <h2 class="font-weight-normal mb-4">Ghi âm giọng nói</h2>
+                        <div style="display:flex">
+                                <h2 class="font-weight-normal mb-4">Ghi âm giọng nói</h2>
+                                <div style="position: absolute; margin:0px 17px; right:0" class="custom-control custom-switch custom-control-inline">
+                                    <img name="download_record" style="max-height: 40px;" src="assets/images/download.png"/>
+                                </div>
+                            </div>
                             <div class="row align-items-center">
                                 <div class="datta-example">
                                     <audio id="audioWave" class="video-js vjs-default-skin"></audio>
@@ -334,34 +339,32 @@
                     </div>
                 </div>
             </div>
-            <div class="row" style="margin-bottom: 15px;">
+            <div class="row" style="margin-bottom: 5px;">
                 <div class="col-lg-6">
-                    <button type="button" style="margin-left: 0.5%;width: 49%;" class="btn btn-outline-success" mask="recording" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Nhận dạng ghi âm</button>
-                    <button type="button" style="width: 49%;" class="btn btn-outline-success" mask="uploadfile" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Nhận dạng tập tin</button>
+                    <button type="button" style="margin-left: 0.5%;width: 99%;" class="btn btn-outline-success" mask="recording" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Nhận dạng ghi âm</button>
                 </div>
                 <div class="col-lg-6">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <select id="models" class="form-control">
-                                <option value="1">Mô hình dataset FPT</option>
-                                <option value="2">Mô hình dataset VinBigData</option>
-                                <option value="3">Mô hình dataset FPT ft VinBigData</option>
-                            </select></div>
-                        <div class="col-lg-4">
-                            <div style="margin: 10px 0px;" class="custom-control custom-switch custom-control-inline">
-                                <input type="checkbox" class="custom-control-input input-secondary" id="expected">
-                                <label style="font-weight: 700;font-size: 14px;" class="custom-control-label" for="expected">WER / CER</label>
-                            </div>
-                        </div>
-                    </div>
+                    <button type="button" style="width: 99%;" class="btn btn-outline-success" mask="uploadfile" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Nhận dạng tập tin</button>
                 </div>
             </div>
-            <hr>
+            <!---<div class="row">
+                <div class="col-lg-6">
+                    <button type="button" style="margin-left: 0.5%;width: 99%;" class="btn btn-outline-success" mask="download_record" name="download_record"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Tải xuống ghi âm</button>
+                </div>
+            </div>
+            !-->
+            <hr style="margin:10px">
             <div class="row">
                 <div id="result-block-div" class="col-md-12">
                     <div id="result-block" class="card" style="height:95%">
                         <div class="card-header not-padding-bottom">
-                            <h3 id="ketquaLabel" class="font-weight-normal"> Kết quả </h3>
+                        <div style="display:flex">
+                            <h3 id="ketquaLabel" class="font-weight-normal" style="margin:0px 170px">Kết quả </h3>
+                            <div style="position: absolute; margin:0px 17px" class="custom-control custom-switch custom-control-inline">
+                                <input type="checkbox" class="custom-control-input input-secondary" id="expected">
+                                <label style="font-weight: 700;font-size: 14px;" class="custom-control-label" for="expected">WER / CER</label>
+                            </div>
+                        </div>
                         </div>
                         <div class="card-body">
                             <textarea id="result-editor">
