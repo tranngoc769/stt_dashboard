@@ -106,21 +106,7 @@
 
                     </div>
                 </li> -->
-                <li class="nav-item d-inline-block d-md-none">
-                    <a href="#!" class="pop-search"><i class="feather icon-search"></i></a>
-                    <div class="search-bar">
-                        <div class="nav-search">
-                            <div class="filter-block">
-                                <input type="text" class="form-control input nav-search border-0 shadow-none" placeholder="Search" tabindex="-1" data-search="menu-list">
-                                <ul class="link-list dropdown-menu"></ul>
-                            </div>
-                        </div>
-                        <button type="button" class="close" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-                    </div>
-                </li>
-                <li class="nav-item h-auto d-none d-md-inline-block">
+                <!--<li class="nav-item h-auto d-none d-md-inline-block">
                     <div class="input-group search-form">
                         <div class="nav-search">
                             <div class="filter-block">
@@ -132,6 +118,9 @@
                             </div>
                         </div>
                     </div>
+                </li>-->
+                <li class="nav-item">
+                    <h1>NHẬN DẠNG ÂM THANH TIẾNG VIỆT</h1>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -363,6 +352,13 @@
                         </div>
                         </div>
                         <div class="card-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+                                <symbol id="trumbowyg-myicon" viewBox="0 0 72 72">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M472,313v139c0,11.028-8.972,20-20,20H60c-11.028,0-20-8.972-20-20V313H0v139c0,33.084,26.916,60,60,60h392c33.084,0,60-26.916,60-60V313H472z"/></g></g><g><g><polygon points="352,235.716 276,311.716 276,0 236,0 236,311.716 160,235.716 131.716,264 256,388.284 380.284,264 "/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                                </symbol>
+                            </svg>
+
+
                             <textarea id="result-editor">
                                 </textarea>
                         </div>
@@ -557,6 +553,36 @@
         chart.render();
         $(window).on('load', function() {
             $('#result-editor').trumbowyg({
+                btnsDef: {
+                    alert: {
+                        fn: function() {
+                            var text = $(".trumbowyg-editor")[0].innerText;
+                            if (text==""){
+                                alert("Blank");
+                                return;
+                            }
+                            var blob = new Blob([text], {type: 'text/plain'});
+                            var currentDate = new Date()
+                            var day = currentDate.getDate()
+                            var month = currentDate.getMonth() + 1
+                            var year = currentDate.getFullYear()
+                            var hour = currentDate.getHours()
+                            var min = currentDate.getMinutes()
+                            var sec = currentDate.getSeconds()
+                            blob.name = day+"_"+month+"_"+year+"_"+hour+"_"+min+"_"+sec
+                            var a = document.createElement("a");
+                            document.body.appendChild(a);
+                            a.style = "display: none";
+                            url = window.URL.createObjectURL(blob);
+                            a.href = url;
+                            a.download = blob.name;
+                            a.click();
+                            window.URL.revokeObjectURL(url);
+                            document.body.removeChild(a);
+                        },
+                        ico: 'myicon'
+                    }
+                },
                 svgPath: 'assets/css/plugins/icons.svg',
                 btns: [
                     ['viewHTML'],
@@ -567,9 +593,11 @@
                     ['link'],
                     ['insertImage'],
                     ['unorderedList', 'orderedList'],
+                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],    
                     ['horizontalRule'],
                     ['removeformat'],
-                    ['fullscreen']
+                    ['fullscreen'],
+                    ['alert']
                 ]
             });
             $('#fpt-editor').trumbowyg({
