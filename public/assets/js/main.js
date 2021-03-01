@@ -80,11 +80,11 @@ $(function() {
                         delay: 4000
                     });
                 }
-                $("button[id='nhandangfpt']").attr("disabled", false)
+                // $("button[id='nhandangfpt']").attr("disabled", false)
             },
             error: function(e) {
                 curValue = 100;
-                $("button[id='nhandangfpt']").attr("disabled", false)
+                // $("button[id='nhandangfpt']").attr("disabled", false)
                 console.log("LOG_ERRO : FPT response")
                 console.log(e)
                 PNotify.alert({
@@ -182,8 +182,8 @@ $(function() {
         }
     });
     $('button[name="pnotify-progress"]').on('click', function() {
-        $("#suggest").css("display", "none")
-        $("#nhandangfpt").css("display", "none")
+        // $("#suggest").css("display", "none")
+        // $("#nhandangfpt").css("display", "none")
         var file;
         var mask = $(this).attr("mask");
         if (mask != "recording") {
@@ -240,8 +240,8 @@ $(function() {
                 $("#ketquaLabel").text("Kết quả : " + modelName)
                 $("#ketquadoichieulabel").text("Đánh giá WER " + data.wer + ", CER = " + data.cer)
                 if (data.status == 200) {
-                    $("#nhandangfpt").css("display", "block")
-                    $("#nhandangfpt").attr('path', data.path)
+                    // $("#nhandangfpt").css("display", "block")
+                    // $("#nhandangfpt").attr('path', data.path)
                     document.getElementById('result-block').scrollIntoView({
                         behavior: 'smooth',
                         block: 'center'
