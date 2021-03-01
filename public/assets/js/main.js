@@ -330,10 +330,10 @@ $(function() {
 
                             if (curValue > 60) {
                                 plus = 1;
-                                loader.update({
-                                    title: 'Using language model',
-                                    icon: 'fas fa-file-contract'
-                                });
+                                // loader.update({
+                                //     title: 'Using language model',
+                                //     icon: 'fas fa-file-contract'
+                                // });
                             }
                             if (curValue > 90 & curValue < 92) {
                                 plus = 0;
