@@ -5,7 +5,7 @@ var conn = mysql.createConnection({
     port: '3306',
     user: 'freedbtech_tranngoc',
     password: 'tranngoc',
-    database: 'freedbtech_sdadasscxc'
+    database: 'freedbtech_vietnamese'
 });
 
 function connect() {

@@ -3,7 +3,7 @@ var connection = require('../models/db');
 
 module.exports = {
     getTotal: async() => {
-        var sql = "Select SUM(visit) as visit,SUM(vnsr) as vnsr, SUM(fpt) as fpt FROM visitor";
+        var sql = "Select SUM(visit) as visit,SUM(vnsr) as vnsr FROM visitor";
         const rows = await connection.querry(sql);
         return rows;
     },

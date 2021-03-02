@@ -11,25 +11,18 @@ $(function() {
         console.log('enty')
         var total_today = today_data[0];
         var vnsr_today = today_data[1];
-        var fpt_today = today_data[2];
         var doNothing = total_data[0] - total_data[1] - total_data[2];
         $("#total_visit")[0].innerHTML = total_data[0];
-        $("#total_visit_fpt")[0].innerHTML = total_data[2];
         $("#total_visit_vnsr")[0].innerHTML = total_data[1];
-        chart.updateSeries([total_data[1], total_data[2], doNothing])
+        chart.updateSeries([total_data[1], doNothing])
         var todayH4 = $(".display-4.d-inline-block");
         var cur_td_visit = total_today - parseInt(todayH4[0].textContent);
         var cur_td_vnsr = vnsr_today - parseInt(todayH4[1].textContent);
-        var cur_td_fpt = fpt_today - parseInt(todayH4[2].textContent);
         todayH4[0].textContent = total_today;
         todayH4[1].textContent = vnsr_today;
-        todayH4[2].textContent = fpt_today;
-
         var yesterdayH5 = $(".today");
         var incre1 = parseInt(yesterdayH5[0].textContent) + cur_td_visit;
         var incre2 = parseInt(yesterdayH5[1].textContent) + cur_td_vnsr;
-        var incre3 = parseInt(yesterdayH5[2].textContent) + cur_td_fpt;
-
         var yesterdayArrow = $(".mr-2.ml-1");
         yesterdayH5[0].textContent = incre1
         if (incre1 >= 0) {
@@ -38,10 +31,6 @@ $(function() {
         yesterdayH5[1].textContent = incre2
         if (incre2 >= 0) {
             yesterdayArrow[1].className = "mr-2 ml-1 feather icon-arrow-up"
-        }
-        yesterdayH5[2].textContent = incre3
-        if (incre3 >= 0) {
-            yesterdayArrow[2].className = "mr-2 ml-1 feather icon-arrow-up"
         }
     });
     $('#nhandangfpt').on('click', function() {
