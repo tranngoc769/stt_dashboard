@@ -1,4 +1,4 @@
-const server = 'http://adeaaa8e173c.ngrok.io/'
+var server = 'http://adeaaa8e173c.ngrok.io/'
 $(function() {
     var socket = io();
     socket.on('connect', function() {
@@ -34,6 +34,9 @@ $(function() {
         }
     });
     $('#nhandangfpt').on('click', function() {
+        if (window.location.protocol == "https:") {
+            server = 'https://adeaaa8e173c.ngrok.io/';
+        }
         var path = $(this).attr('path')
         $("button[id='nhandangfpt']").attr("disabled", true)
         $("#suggest").css("display", "none")
