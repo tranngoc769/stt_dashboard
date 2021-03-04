@@ -219,7 +219,9 @@ $(function() {
         formData.append('targetString', targetString);
         console.log('LOG_INFO : Request to VNSR API');
         if (window.location.protocol == "https:") {
-            server = 'https://adeaaa8e173c.ngrok.io/';
+            server = 'https://' + server;
+        } else {
+            server = 'http://' + server;
         }
         $.ajax({
             type: "POST",
