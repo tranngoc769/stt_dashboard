@@ -1,4 +1,4 @@
-var server = 'http://4733c13edee2.ngrok.io'
+var server = 'd0965b9bacc4.ngrok.io/'
 $(function() {
     var socket = io();
     socket.on('connect', function() {
@@ -35,7 +35,9 @@ $(function() {
     });
     $('#nhandangfpt').on('click', function() {
         if (window.location.protocol == "https:") {
-            server = 'https://adeaaa8e173c.ngrok.io/';
+            server = 'https://' + server;
+        } else {
+            server = 'http://' + server;
         }
         var path = $(this).attr('path')
         $("button[id='nhandangfpt']").attr("disabled", true)
