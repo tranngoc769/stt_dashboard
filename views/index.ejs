@@ -148,20 +148,20 @@
                 <div class="col-lg-6" style="display:flex">
                     <h4 style="min-width: 130px;margin: auto 0px;">Chọn mô hình:</h4>
                     <select id="models" class="form-control">
-                        <option value="1">Mô hình dataset FPT</option>
-                        <option value="2">Mô hình dataset VinBigData</option>
-                        <option value="3" selected>Mô hình dataset FPT ft VinBigData</option>
+                        <option value="3" selected>Dataset FPT ft VinBigData</option>
+                        <option value="1">Dataset FPT</option>
+                        <option value="2">Dataset VinBigData</option>
                     </select>
-                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card" style="height:95%">
                         <div class="card-body" style="margin-bottom: 20px;padding-bottom: 0px;">
-                        <div style="display:flex">
+                            <div style="display:flex">
                                 <h2 class="font-weight-normal mb-4">Ghi âm giọng nói</h2>
                                 <div style="position: absolute; margin:0px 17px; right:0" class="custom-control custom-switch custom-control-inline">
-                                    <img name="download_record" style="max-height: 40px;" src="assets/images/download.png"/>
+                                    <img name="download_record" style="max-height: 40px;" src="assets/images/download.png" />
                                 </div>
                             </div>
                             <div class="row align-items-center">
@@ -343,19 +343,19 @@
                 <div id="result-block-div" class="col-md-12">
                     <div id="result-block" class="card" style="height:95%">
                         <div class="card-header not-padding-bottom">
-                        <div style="display:flex">
-                            <h3 id="ketquaLabel" class="font-weight-normal" style="margin:0px 170px">Kết quả </h3>
-                            <div style="position: absolute; margin:0px 17px" class="custom-control custom-switch custom-control-inline">
-                                <input type="checkbox" class="custom-control-input input-secondary" id="expected">
-                                <label style="font-weight: 700;font-size: 14px;" class="custom-control-label" for="expected">WER / CER</label>
+                            <div style="display:flex">
+                                <h3 id="ketquaLabel" class="font-weight-normal" style="margin:0px 170px">Kết quả </h3>
+                                <div style="position: absolute; margin:0px 17px" class="custom-control custom-switch custom-control-inline">
+                                    <input type="checkbox" class="custom-control-input input-secondary" id="expected">
+                                    <label style="font-weight: 700;font-size: 14px;" class="custom-control-label" for="expected">WER / CER</label>
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <div class="card-body">
                             <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
                                 <symbol id="trumbowyg-myicon" viewBox="0 0 72 72">
                                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M472,313v139c0,11.028-8.972,20-20,20H60c-11.028,0-20-8.972-20-20V313H0v139c0,33.084,26.916,60,60,60h392c33.084,0,60-26.916,60-60V313H472z"/></g></g><g><g><polygon points="352,235.716 276,311.716 276,0 236,0 236,311.716 160,235.716 131.716,264 256,388.284 380.284,264 "/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
-                                </symbol>
+                            </symbol>
                             </svg>
 
 
@@ -557,11 +557,13 @@
                     alert: {
                         fn: function() {
                             var text = $(".trumbowyg-editor")[0].innerText;
-                            if (text==""){
+                            if (text == "") {
                                 alert("Blank");
                                 return;
                             }
-                            var blob = new Blob([text], {type: 'text/plain'});
+                            var blob = new Blob([text], {
+                                type: 'text/plain'
+                            });
                             var currentDate = new Date()
                             var day = currentDate.getDate()
                             var month = currentDate.getMonth() + 1
@@ -569,7 +571,7 @@
                             var hour = currentDate.getHours()
                             var min = currentDate.getMinutes()
                             var sec = currentDate.getSeconds()
-                            blob.name = day+"_"+month+"_"+year+"_"+hour+"_"+min+"_"+sec
+                            blob.name = day + "_" + month + "_" + year + "_" + hour + "_" + min + "_" + sec
                             var a = document.createElement("a");
                             document.body.appendChild(a);
                             a.style = "display: none";
@@ -593,7 +595,7 @@
                     ['link'],
                     ['insertImage'],
                     ['unorderedList', 'orderedList'],
-                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],    
+                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
                     ['horizontalRule'],
                     ['removeformat'],
                     ['fullscreen'],

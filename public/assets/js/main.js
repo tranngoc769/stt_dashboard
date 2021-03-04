@@ -204,7 +204,7 @@ $(function() {
                             if (curValue === 30) {
                                 plus = 2.0;
                                 loader.update({
-                                    title: 'Transcript audio to text',
+                                    title: 'Transcribe audio to text',
                                     icon: 'fas fa-file-audio'
                                 });
                             }
