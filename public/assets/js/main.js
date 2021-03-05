@@ -101,8 +101,10 @@ $(function() {
         formData.append('targetString', targetString);
         console.log('LOG_INFO : Request to VNSR API');
         if (window.location.protocol == "https:") {
+            server = server.replace('https://', '')
             server = 'https://' + server;
         } else {
+            server = server.replace('http://', '')
             server = 'http://' + server;
         }
         $.ajax({
