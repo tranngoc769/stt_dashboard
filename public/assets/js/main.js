@@ -1,4 +1,4 @@
-var server = 'd0965b9bacc4.ngrok.io/'
+var server = '03b97be78b07.ngrok.io/'
 $(function() {
     var socket = io();
     socket.on('connect', function() {
