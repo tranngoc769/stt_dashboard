@@ -120,6 +120,7 @@ $(function() {
                 console.log(data)
                 curValue = 100;
                 $(".trumbowyg-editor")[0].innerHTML = data.data
+                $("#txtGreedy").text("Bộ giải mã greedy : " + data.greedy) //quyennnn
                 $("#ketquaLabel").text("Kết quả : " + modelName)
                 $("#ketquadoichieulabel").text("Đánh giá WER " + data.wer + ", CER = " + data.cer)
                 if (data.status == 200) {
@@ -174,7 +175,7 @@ $(function() {
         $("button[name='pnotify-progress']").attr("disabled", true)
             // Make a loader.
         var loader = PNotify.notice({
-            title: 'Speech recognizing',
+            title: 'NHẬN DẠNG ÂM THANH',
             text: '<div class="progress ">\n' +
                 '  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></' + 'div>\n' +
                 '</' + 'div>',
@@ -199,14 +200,14 @@ $(function() {
                             if (curValue === 20) {
                                 plus = 0.5;
                                 loader.update({
-                                    title: 'Loading audio',
+                                    title: 'Đọc nội dung âm thanh',
                                     icon: 'fas fa-circle-notch fa-spin'
                                 });
                             }
                             if (curValue === 30) {
                                 plus = 2.0;
                                 loader.update({
-                                    title: 'Transcribe audio to text',
+                                    title: 'Chuyển âm thanh thành văn bản',
                                     icon: 'fas fa-file-audio'
                                 });
                             }
