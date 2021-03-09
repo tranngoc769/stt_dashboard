@@ -120,7 +120,7 @@ $(function() {
                 console.log(data)
                 curValue = 100;
                 $(".trumbowyg-editor")[0].innerHTML = data.data
-                $("#txtGreedy").text("Bộ giải mã greedy : " + data.greedy) //quyennnn
+                $("#txtGreedy").text("GREEDY : " + data.greedy) //quyennnn
                 $("#ketquaLabel").text("Kết quả : " + modelName)
                 $("#ketquadoichieulabel").text("Đánh giá WER " + data.wer + ", CER = " + data.cer)
                 if (data.status == 200) {
