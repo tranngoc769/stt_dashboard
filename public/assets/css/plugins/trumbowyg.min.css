@@ -27,6 +27,11 @@
     fill: #222
 }
 
+.trumbowyg-editor p {
+    color: black;
+    font-size: xx-large;
+}
+
 .trumbowyg-box,
 .trumbowyg-editor {
     height: 90%;
