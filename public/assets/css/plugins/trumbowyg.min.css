@@ -34,6 +34,8 @@
 
 .trumbowyg-box,
 .trumbowyg-editor {
+    color: black;
+    font-size: 32px !important;
     height: 90%;
     display: block;
     position: relative;
