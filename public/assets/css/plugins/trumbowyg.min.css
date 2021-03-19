@@ -29,7 +29,7 @@
 
 .trumbowyg-editor p {
     color: black;
-    font-size: xx-large;
+    font-size: 32px !important;
 }
 
 .trumbowyg-box,
