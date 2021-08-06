@@ -33,8 +33,6 @@ $(function() {
             yesterdayArrow[1].className = "mr-2 ml-1 feather icon-arrow-up"
         }
     });
-
-
     $('img[name="download_record"]').on('click', function() {
         console.log(player.recordedData);
         var blob = player.recordedData;
@@ -72,8 +70,8 @@ $(function() {
         }
         if (file == undefined || file == null) {
             var ero = PNotify.error({
-                title: 'Chưa ghi âm hoặc chọn file',
-                text: 'Ghi âm, kéo thả hoặc chọn file từ thiết bị',
+                title: 'Chưa ghi âm',
+                text: 'Ghi âm',
                 delay: 2000
 
             });
@@ -84,22 +82,7 @@ $(function() {
         var formData = new FormData(form);
         var curValue = 1;
         var progress;
-        var model = $("#models")[0].value;
-        var modelName = $("#models option:selected").text();
-        var isChecked = $("#expected")[0].checked;
-        var targetString = $(".trumbowyg-editor")[1].innerText;
-
-        if (!isChecked) {
-            targetString = "";
-        }
-        console.log({
-            "Model": modelName,
-            "TargetString": targetString
-        })
         formData.append('file', file);
-        formData.append('model', model);
-        formData.append('targetString', targetString);
-        console.log('LOG_INFO : Request to VNSR API');
         if (window.location.protocol == "https:") {
             server = server.replace('https://', '')
             server = 'https://' + server;
@@ -110,45 +93,22 @@ $(function() {
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url: server + "transcribe",
+            url: "/recording",
             data: formData,
             processData: false,
             contentType: false,
             cache: false,
-            success: function(data) {
-                console.log("LOG_INFO : VNSR response")
-                console.log(data)
+            success: function(resp) {
+                data = JSON.parse(resp)
                 curValue = 100;
-                $(".trumbowyg-editor")[0].innerHTML = data.data
-                $("#txtGreedy").text("GREEDY : " + data.greedy) //quyennnn
-                $("#ketquaLabel").text("Kết quả : " + modelName)
-                $("#ketquadoichieulabel").text("Đánh giá WER " + data.wer + ", CER = " + data.cer)
                 if (data.status == 200) {
-                    // $("#nhandangfpt").css("display", "block")
-                    // $("#nhandangfpt").attr('path', data.path)
-                    document.getElementById('result-block').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
                     PNotify.alert({
                         title: 'Thành công',
                         text: 'Thời gian nhận dạng : ' + data.seconds.toString(),
                         addclass: 'alert bg-primary alert-styled-left',
                         delay: 4000
                     });
-                    console.log('Emit VNSR')
                     socket.emit('increaseVNSR');
-                    // $.ajax({
-                    //     type: "POST",
-                    //     url: "/increaseVNSR",
-                    //     success: function(data) {
-                    //         console.log("LOG_INFO : Update number visit VNSR success");
-                    //     },
-                    //     error: function(e) {
-                    //         console.log("LOG_INFO : Update number visit VNSR failed ");
-                    //         console.log(e)
-                    //     }
-                    // });
                 } else {
                     curValue = 100;
                     PNotify.alert({
@@ -161,7 +121,6 @@ $(function() {
                 $("button[name='pnotify-progress']").attr("disabled", false)
             },
             error: function(e) {
-                console.log("LOG_ERRO : VNSR response")
                 $("button[name='pnotify-progress']").attr("disabled", false)
                 console.log(e)
                 PNotify.alert({
@@ -173,88 +132,5 @@ $(function() {
             }
         });
         $("button[name='pnotify-progress']").attr("disabled", true)
-            // Make a loader.
-        var loader = PNotify.notice({
-            title: 'NHẬN DẠNG ÂM THANH',
-            text: '<div class="progress ">\n' +
-                '  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></' + 'div>\n' +
-                '</' + 'div>',
-            textTrusted: true,
-            icon: 'fas fa-cog fa-spin',
-            hide: false,
-            modules: {
-                Buttons: {
-                    closer: false,
-                    sticker: false
-                },
-                History: {
-                    history: false
-                },
-                Callbacks: {
-                    beforeOpen: function(notice) {
-                        progress = $(notice.refs.elem).find('div.progress-bar');
-                        progress.width(curValue + '%').attr('aria-valuenow', curValue);
-                        // Pretend to do something.
-                        var plus = 1;
-                        var timer = setInterval(function() {
-                            if (curValue === 20) {
-                                plus = 0.5;
-                                loader.update({
-                                    title: 'Đọc nội dung âm thanh',
-                                    icon: 'fas fa-circle-notch fa-spin'
-                                });
-                            }
-                            if (curValue === 30) {
-                                plus = 2.0;
-                                loader.update({
-                                    title: 'Chuyển âm thanh thành văn bản',
-                                    icon: 'fas fa-file-audio'
-                                });
-                            }
-
-                            if (curValue > 60) {
-                                plus = 1;
-                                // loader.update({
-                                //     title: 'Using language model',
-                                //     icon: 'fas fa-file-contract'
-                                // });
-                            }
-                            if (curValue > 90 & curValue < 92) {
-                                plus = 0;
-                            }
-                            if (curValue >= 100 && curValue < 115) {
-                                plus = 1;
-                                loader.update({
-                                    title: 'Finish',
-                                    icon: 'fas fa-check-double'
-                                });
-                            }
-                            if (curValue > 115) {
-                                // Clean up the interval.
-                                loader.close();
-                                window.clearInterval(timer);
-
-                                return;
-                            }
-                            curValue += plus;
-                            progress.width(curValue + '%').attr('aria-valuenow', curValue);
-                        }, 65);
-                    }
-                }
-            }
-        });
-        // fakeLoad();
-    });
-    $("#expected").on('click', function() {
-        var isChecked = $(this)[0].checked;
-        if (isChecked) {
-            // hiện
-            $("#result-block-div").addClass("col-lg-6");
-            $("#compare-block-div").removeClass("myhide");
-        } else {
-            // ẩn
-            $("#result-block-div").removeClass("col-lg-6");
-            $("#compare-block-div").addClass("myhide");
-        }
     });
 });

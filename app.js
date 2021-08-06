@@ -14,7 +14,27 @@ app.use(express.static(path.join(__dirname, '/public')));
 /* @@END VIEWS ENGINE */
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
-
+var multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads');
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname)
+    }
+});
+var upload = multer({
+    storage: storage
+});
+app.post('/recording', upload.single('file'), async function(req, res) {
+    const file = req.file
+    if (!file) {
+        const error = new Error('Please upload a file')
+        res.send(JSON.stringify({ status: 400, msg: "Please upload a file" }));
+        return;
+    }
+    res.send(JSON.stringify({ status: 200, msg: "Upload file success" }));
+});
 app.get('/', async function(req, res) {
     console.log("GET /")
     let ts = Date.now();

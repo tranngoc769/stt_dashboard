@@ -2,22 +2,22 @@
 <html lang="vi">
 
 <head>
-    <title>Nhận dạng Tiếng Việt</title>
+    <title>COVID AI</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta name="description" content="Ngọc Quang - Hoàng Quyên HCMUS">
-    <meta name="keywords" content="Speech To Text, Regconition,Vietnamese, Regconize">
-    <meta name="author" content="Ngọc Quang - Hoàng Quyên">
+    <meta name="description" content="COVID AI">
+    <meta name="keywords" content="COVID AI">
+    <meta name="author" content="COVID AI">
     <!-- Meta FB -->
-    <meta property="og:title" content="Nhận dạng âm thanh Tiếng Việt - Vietnamese Speech Recognition" />
+    <meta property="og:title" content="COVID AI" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://product.vnspeechrecognition.com" />
     <meta property="og:image" content="assets/images/og.png" />
     <meta property="og:image:width" content="400" />
     <meta property="og:image:height" content="300" />
     <link rel="icon" href="assets/images/favicon.ico">
-    <meta property="og:site_name" content="Vietnamese Speech Recognition" />
+    <meta property="og:site_name" content="COVID AI" />
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/plugins/dropify.min.css">
@@ -97,69 +97,14 @@
         </div>
         <div class="collapse navbar-collapse" style="background-color: #171F46;margin-left: 0.8px;">
             <div class="navbar-nav mr-auto" style="position: absolute;top: 35%;left: 40%;">
-                <h2 style="color: white;margin: auto;font-weight: bold;font-family: 'dropify'">NHẬN DẠNG ÂM THANH TIẾNG VIỆT</h1>
+                <h2 style="color: white;margin: auto;font-weight: bold;font-family: 'dropify'">COVID AI</h1>
             </div>
-            <!-- <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <a class="dropdown-toggle h-drop" href="#" data-toggle="dropdown">
-                            <i class="feather icon-monitor mx-2"></i>
-                            <span class="d-none d-sm-inline-block">Phím tắt</span>
-                        </a>
-
-                    </div>
-                </li> 
-                <li class="nav-item h-auto d-none d-md-inline-block">
-                    <div class="input-group search-form">
-                        <div class="nav-search">
-                            <div class="filter-block">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-transparent"><i class="feather icon-search"></i></span>
-                                </div>
-                                <input type="text" class="form-control input nav-search" placeholder="Search" tabindex="-1" data-search="menu-list">
-                                <ul class="link-list dropdown-menu"></ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <h1>NHẬN DẠNG ÂM THANH TIẾNG VIỆT</h1>
-                </li>
-            </ul> -->
-            <!-- <ul class="navbar-nav ml-auto">
-                <li>
-                    <div class="dropdown drp-user">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="assets/images/avatar.jpg" class="img-radius" alt="User-Profile-Image">
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right profile-notification">
-                            <ul class="pro-body">
-                                <li><a href="#" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-                                <li><a href="#" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-                                <li><a href="#" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-            </ul> -->
         </div>
     </header>
     <div class="pcoded-main-container">
         <div class="pcoded-content container">
-            <!-- [ Main Content ] start -->
             <div class="row">
-                <div class="col-lg-6" style="display:flex">
-                    <h4 style="min-width: 130px;margin: auto 0px;">Chọn mô hình:</h4>
-                    <select id="models" class="form-control">
-                        <option value="3" selected>Dataset FPT ft VinBigData</option>
-                        <option value="1">Dataset FPT</option>
-                        <option value="2">Dataset VinBigData</option>
-                        <option value="4">Attention</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="card" style="height:95%">
                         <div class="card-body" style="margin-bottom: 20px;padding-bottom: 0px;">
                             <div style="display:flex">
@@ -295,114 +240,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="card" style="height:95%">
-                        <div class="card-body" style="margin-bottom: 20px;padding-bottom: 0px;">
-                            <h2 class="font-weight-normal mb-4">Tải lên tập tin</h2>
-                            <div class="row" style="height:80%">
-                                <form style="display:none"></form>
-                                <div class="datta-example">
-                                    <input type="file" id="wavfileUpload" class="dropify" />
-                                    <script>
-                                        $(document).ready(function() {
-                                            $('#wavfileUpload').dropify({
-                                                messages: {
-                                                    'default': '<span style="font-size:larger;">Kéo thả hoặc </span><button type="button" class="btn px-md-5 mt-3 btn-primary">Tải lên từ máy tính</button>',
-                                                    'replace': "Kéo thả hoặc tải lên để thay thế",
-                                                    'maxFileSize': 5000,
-                                                    'remove': "Gỡ",
-                                                    'error': "Đã có lỗi xảy ra"
-                                                },
-                                                error: {
-                                                    'fileSize': 'Kích thước file quá lớn',
-                                                    'fileExtension': "Định dạng tệp tin không hỗ trợ, chỉ hỗ trợ wav.",
-                                                    'error': "Đã có lỗi xảy ra",
-                                                },
-                                                allowedFileExtensions: ["wav", "mp3", "webm", "mp4"]
-                                            });
-                                        });
-                                    </script>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="row" style="margin-bottom: 5px;">
-                <div class="col-lg-6">
-                    <button type="button" style="margin-left: 0.5%;width: 99%;" class="btn btn-outline-success" mask="recording" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Nhận dạng ghi âm</button>
-                </div>
-                <div class="col-lg-6">
-                    <button type="button" style="width: 99%;" class="btn btn-outline-success" mask="uploadfile" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Nhận dạng tập tin</button>
+                <div class="col-lg-12">
+                    <button type="button" style="margin-left: 0.5%;width: 99%;" class="btn btn-outline-success" mask="recording" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Lưu trữ giọng nói</button>
                 </div>
             </div>
-            <!---<div class="row">
-                <div class="col-lg-6">
-                    <button type="button" style="margin-left: 0.5%;width: 99%;" class="btn btn-outline-success" mask="download_record" name="download_record"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Tải xuống ghi âm</button>
-                </div>
-            </div>
-            !-->
-            <hr style="margin:10px">
-            <div class="row">
-                <div id="result-block-div" class="col-md-12">
-                    <div id="result-block" class="card" style="height:95%">
-                        <div class="card-header not-padding-bottom">
-                            <div style="display:flex">
-                                <h3 id="ketquaLabel" class="font-weight-normal" style="margin:0px 170px">Kết quả </h3>
-                                <div style="position: absolute; margin:0px 17px" class="custom-control custom-switch custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input input-secondary" id="expected">
-                                    <label style="font-weight: 700;font-size: 14px;" class="custom-control-label" for="expected">WER / CER</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-                                <symbol id="trumbowyg-myicon" viewBox="0 0 72 72">
-                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M472,313v139c0,11.028-8.972,20-20,20H60c-11.028,0-20-8.972-20-20V313H0v139c0,33.084,26.916,60,60,60h392c33.084,0,60-26.916,60-60V313H472z"/></g></g><g><g><polygon points="352,235.716 276,311.716 276,0 236,0 236,311.716 160,235.716 131.716,264 256,388.284 380.284,264 "/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
-                            </symbol>
-                            </svg>
-
-
-                            <textarea id="result-editor">
-                                </textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="compare-block-div" class="col-lg-6 col-md-12 myhide">
-                    <div id="compare-block" class="card" style="height:95%">
-                        <div class="card-header not-padding-bottom">
-                            <h3 id="ketquadoichieulabel" class="font-weight-normal"> Kết quả đối chiếu</h3>
-                        </div>
-                        <div class="card-body">
-                            <textarea id="compare-editor">
-                                </textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div>
                 <p id="txtGreedy"></p>
             </div>
-            <!---<div class="row" style="margin-bottom: 15px;">
-                <div class="col-12">
-                    <button id="nhandangfpt" style="display:none;width: 100%;margin-bottom: 15px;" type="button" class="btn btn-outline-secondary" style="display: block; width: 100%;" path="/work/dataset_product/wav/product_0d6bcncs.wav"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Nhận dạng FPT</button>
-                </div>
-                <div class="col-12">
-                    <div class="card" id="suggest" style="display: none;">
-                        <div class="card-header not-padding-bottom">
-                            <h3 class="font-weight-normal"> Gợi ý</h3>
-                        </div>
-                        <div class="card-body">
-                            <textarea id="fpt-editor">
-                                </textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>--->
             <hr>
-
         </div>
         <div style="padding: 20px;background-color: #171F46;">
             <div class="row" style="margin-left:10px;">
@@ -498,7 +345,7 @@
             </div>
             <div class="row">
                 <p class="col-lg-12 col-md-12" style="text-align: center;font-size: 12px;">
-                    Trường Đại Học Khoa Học Tự Nhiên TPHCM <br> Khoa Công Nghệ Thông Tin<br> Bộ Môn Công Nghệ Phần Mềm<br> 1712706 - Trần Ngọc Quang<br> 1712712 - Nguyễn Hoàng Quyên<br> Khóa Luận Tốt Nghiệp Khóa 2017<br>
+                    Pitel <br>
                 </p>
             </div>
         </div>
