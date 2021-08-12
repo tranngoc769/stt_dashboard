@@ -2,22 +2,22 @@
 <html lang="vi">
 
 <head>
-    <title>COVID AI</title>
+    <title>AICOVIDVN</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta name="description" content="COVID AI">
-    <meta name="keywords" content="COVID AI">
-    <meta name="author" content="COVID AI">
+    <meta name="description" content="AICOVIDVN">
+    <meta name="keywords" content="AICOVIDVN">
+    <meta name="author" content="AICOVIDVN">
     <!-- Meta FB -->
-    <meta property="og:title" content="COVID AI" />
+    <meta property="og:title" content="AICOVIDVN" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://product.vnspeechrecognition.com" />
     <meta property="og:image" content="assets/images/og.png" />
     <meta property="og:image:width" content="400" />
     <meta property="og:image:height" content="300" />
     <link rel="icon" href="assets/images/favicon.ico">
-    <meta property="og:site_name" content="COVID AI" />
+    <meta property="og:site_name" content="AICOVIDVN" />
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/plugins/dropify.min.css">
@@ -53,12 +53,9 @@
                         <label>Danh Mục</label>
                     </li>
                     <li class="nav-item"><a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-tachometer-alt"></i></span><span class="pcoded-mtext">Trang chủ</span></a></li>
-                    <li class="nav-item">
-                        <a href="./assets/wav/FPTOpenSpeechData_Set002_V0.1_010349.wav" target="_blank" class="nav-link "><span class="pcoded-micon"><i class="fas fa-history"></i></span><span class="pcoded-mtext">Âm thanh mẫu</span></a>
-                    </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-history"></i></span><span class="pcoded-mtext">Lịch sử</span></a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-sitemap"></i></span><span class="pcoded-mtext">Hướng dẫn sử dụng</span></a>
                     </li>
@@ -66,10 +63,7 @@
                         <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-file-invoice"></i></span><span class="pcoded-mtext">Trợ giúp</span></a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fab fa-dev"></i></span><span class="pcoded-mtext">API</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-user-tie"></i></span><span class="pcoded-mtext">Đội ngữ phát triển</span></a>
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="fas fa-user-tie"></i></span><span class="pcoded-mtext">Đội ngũ phát triển</span></a>
                     </li>
                 </ul>
                 <div class="card text-center">
@@ -97,14 +91,14 @@
         </div>
         <div class="collapse navbar-collapse" style="background-color: #171F46;margin-left: 0.8px;">
             <div class="navbar-nav mr-auto" style="position: absolute;top: 35%;left: 40%;">
-                <h2 style="color: white;margin: auto;font-weight: bold;font-family: 'dropify'">COVID AI</h1>
+                <h2 style="color: white;margin: auto;font-weight: bold;font-family: 'dropify'">AICOVIDVN</h1>
             </div>
         </div>
     </header>
     <div class="pcoded-main-container">
         <div class="pcoded-content container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-7">
                     <div class="card" style="height:95%">
                         <div class="card-body" style="margin-bottom: 20px;padding-bottom: 0px;">
                             <div style="display:flex">
@@ -155,8 +149,15 @@
                                                 audio: true,
                                                 video: false,
                                                 maxLength: 20000,
+                                                audioMimeType: 'video/webm',
                                                 displayMilliseconds: true,
-                                                debug: false,
+                                                audioRecorderType: StereoAudioRecorder,
+                                                audioEngine: 'recordrtc',
+                                                audioSampleRate : 44100,
+                                                audioBitRate : 128,
+                                                audioBufferSize : 4096,
+                                                recorderType: 'WebAssemblyRecorder',
+                                                debug: true,
                                             }
                                         }
                                     };
@@ -240,10 +241,78 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-body" style="padding-bottom: 0px !important;">
+                            <div class="float-right">
+                                <a href="#!" class="text-body text-h-primary"></a>
+                            </div>
+                            <h5 class="mb-4">Thông tin người dùng</h5>
+                            <form id="information">
+                                <div class="form-group mb-4">
+                                    <label class="h6 f-12 text-uppercase">Họ và tên</label>
+                                    <input required type="text" name = "fullname" class="form-control" placeholder="" value="" >
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label class="h6 f-12 text-uppercase">Tuổi</label>
+                                            <input required type="text" name = "subject_age" class="form-control" placeholder="" value="" >
+                                        </div>
+                                    </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mb-4">
+                                        <label class="h6 f-12 text-uppercase">Giới tính</label>
+                                        <select name="subject_gender" class="form-control">
+                                            <option value="male" selected>Nam</option>
+                                            <option value="female">Nữ</option>
+                                            <option value="unknown">Khác</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label class="h6 f-12 text-uppercase">Trạng thái ho</label>
+                                            <select name="subject_cough_type" class="form-control">
+                                                <option value="force_cough">Chủ động ho</option>
+                                                <option value="undesirable_cough">Do bệnh</option>
+                                                <option value="unknown">Khác</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group mb-4">
+                                            <label class="h6 f-12 text-uppercase">Tình trạng sức khỏe</label>
+                                            <select name="subject_health_status" class="form-control">
+                                                <option value="normal_health">Khoẻ mạnh</option>
+                                                <option value="common_cold'">Cúm thường</option>
+                                                <option value="asthma">Hen xuyễn</option>
+                                                <option value="F0">F0</option>
+                                                <option value="F1">F1</option>
+                                                <option value="F2">F3</option>
+                                                <option value="F3">F3</option>
+                                                <option value="F4">F4</option>
+                                                <option value="unknown">Khác</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group mb-4">
+                                            <label class="h6 f-12 text-uppercase">Ghi chú</label>
+                                            <input type="text" name = "note" class="form-control" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="row" style="margin-bottom: 5px;">
                 <div class="col-lg-12">
-                    <button type="button" style="margin-left: 0.5%;width: 99%;" class="btn btn-outline-success" mask="recording" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Lưu trữ giọng nói</button>
+                    <button type="button" style="width: 100%;" class="btn btn-outline-success" mask="recording" name="pnotify-progress"><i class="mr-2 mr-2 fas fa-hourglass-start"></i>Gửi dữ liệu</button>
                 </div>
             </div>
             <div>
@@ -251,7 +320,11 @@
             </div>
             <hr>
         </div>
-        <div style="padding: 20px;background-color: #171F46;">
+        <div style="
+        padding: 20px;
+        background-color: #171F46;
+        bottom: 0;
+        width: 100%;">
             <div class="row" style="margin-left:10px;">
                 <h2 class="font-weight-normal mb-2" style="color:white">Thống kê sử dụng</h2>
             </div>
@@ -288,7 +361,7 @@
                     <div class="card" style="height:100%">
                         <div class="card-body" style="position: relative;padding-top: 10px;padding-bottom:0;">
                             <div class="row align-items-center justify-content-between mb-4">
-                                <h4 class="font-weight-normal mb-0">Sử dụng API theo ngày</h4>
+                                <h4 class="font-weight-normal mb-0">Ghi âm theo ngày</h4>
                             </div>
                             <div class="row">
                                 <div class="col-6" style="margin: 0 auto;">
@@ -327,7 +400,7 @@
                                     <div class="row align-items-center justify-content-between mb-4">
                                     </div>
                                     <p class="mb-3">Tổng truy cập<span class="float-right h6 mb-0 text-body" id="total_visit"><%= total[0]%></span></p>
-                                    <p class="mb-3">Nhận dạng VNSR<span class="float-right h6 mb-0 text-body" id="total_visit_vnsr"><%= total[1]%></span></p>
+                                    <p class="mb-3">Ghi âm <span class="float-right h6 mb-0 text-body" id="total_visit_vnsr"><%= total[1]%></span></p>
                                 </div>
 
 
@@ -344,9 +417,9 @@
                 </div>
             </div>
             <div class="row">
-                <p class="col-lg-12 col-md-12" style="text-align: center;font-size: 12px;">
-                    Pitel <br>
-                </p>
+                <a href="https://tel4vn.edu.vn/" target="_blank" class="col-lg-12 col-md-12" style="text-align: center;font-size: 16px;">
+                    TEL4VN đồng hành cùng dự án AICOVIDVN  <br>
+                </a>
             </div>
         </div>
     </div>
@@ -376,7 +449,7 @@
                     enabled: true
                 },
             },
-            labels: ['VNSR', 'F5'],
+            labels: ['Ghi âm', 'F5'],
             series: [vnsr, doNothing],
             colors: ["#4680ff", "#00acc1"],
             legend: {
