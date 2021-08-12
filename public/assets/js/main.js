@@ -1,4 +1,35 @@
-var server = 'c90a6742d095.ngrok.io/'
+const  ACCESS_TOKEN = "6135fac40749744efe4a58c2012794f9123e97030b3c988db55e24412d0bd39e"
+var API_SERVER = 'https://engine-staging03.aicovidvn.org';
+var PARTNER = "tel4vn";
+function generateUUID() { // Public Domain/MIT
+    var d = new Date().getTime();//Timestamp
+    var d2 = (performance && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16;//random number between 0 and 16
+        if(d > 0){//Use timestamp until depleted
+            r = (d + r)%16 | 0;
+            d = Math.floor(d/16);
+        } else {//Use microseconds since page-load if supported
+            r = (d2 + r)%16 | 0;
+            d2 = Math.floor(d2/16);
+        }
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+}
+
+var getUserInformation = function(){
+    let data = {};
+    let uuid = generateUUID();
+    let formData = $("#information").serializeArray();
+    formData.forEach(element => {
+        data[element.name] = element.value;
+    });
+    if (data.fullname == "" || data.subject_age == ""){
+        return false
+    }
+    data['uuid'] = PARTNER + "_" + uuid;
+    return data;
+}
 $(function() {
     var socket = io();
     socket.on('connect', function() {
@@ -8,10 +39,9 @@ $(function() {
         socket.emit('updateAll')
     })
     socket.on('UpdateEnty', function(today_data, total_data) {
-        console.log('enty')
         var total_today = today_data[0];
         var vnsr_today = today_data[1];
-        var doNothing = total_data[0] - total_data[1] - total_data[2];
+        var doNothing = total_data[0] - total_data[1];
         $("#total_visit")[0].innerHTML = total_data[0];
         $("#total_visit_vnsr")[0].innerHTML = total_data[1];
         chart.updateSeries([total_data[1], doNothing])
@@ -82,14 +112,25 @@ $(function() {
         var formData = new FormData(form);
         var curValue = 1;
         var progress;
-        formData.append('file', file);
-        if (window.location.protocol == "https:") {
-            server = server.replace('https://', '')
-            server = 'https://' + server;
-        } else {
-            server = server.replace('http://', '')
-            server = 'http://' + server;
+        let meta = getUserInformation();
+        if (meta == false){
+            PNotify.alert({
+                title: 'Không thành công',
+                text: "Vui lòng nhập đầy đủ thông tin",
+                addclass: 'alert bg-primary alert-styled-left',
+                delay: 4000
+            });
+            return;
         }
+        console.log(meta);
+        formData.append("meta", JSON.stringify(meta));
+        formData.append('audio_file', file);
+        PNotify.info({
+            title: 'Đang gửi kết quả',
+            text: "Vui lòng chờ",
+            addclass: 'alert bg-primary alert-styled-left',
+            delay: 1000
+        });
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
@@ -104,7 +145,7 @@ $(function() {
                 if (data.status == 200) {
                     PNotify.alert({
                         title: 'Thành công',
-                        text: 'Thời gian nhận dạng : ' + data.seconds.toString(),
+                        text: 'Đã gửi dữ liệu dự đoán',
                         addclass: 'alert bg-primary alert-styled-left',
                         delay: 4000
                     });
@@ -113,7 +154,7 @@ $(function() {
                     curValue = 100;
                     PNotify.alert({
                         title: 'Không thành công',
-                        text: data.data,
+                        text: data.msg,
                         addclass: 'alert bg-primary alert-styled-left',
                         delay: 4000
                     });
