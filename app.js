@@ -5,7 +5,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 const path = require('path');
 var bodyParser = require("body-parser");
-
+const logger = require('./log/winston');
 var config = require('./config/config.json')
 var storage_path = config.storage
 // INIT
@@ -33,54 +33,61 @@ var upload = multer({
     storage: storage
 });
 app.post('/recording', upload.single('audio_file'), async function (req, res) {
-    const file = req.file
-    if (!file) {
-        const error = new Error('Please upload a file')
-        res.send(JSON.stringify({ status: 400, msg: "Please upload a file" }));
-        return;
-    }
-    if (req.body.meta == undefined) {
-        const error = new Error('Please upload a file')
-        res.send(JSON.stringify({ status: 400, msg: "Missed meta parameter" }));
-        return;
-    }
-    var meta = req.body.meta;
-    var jsonData = JSON.parse(meta);
+    try {
+        const file = req.file
+        if (!file) {
+            const error = new Error('Please upload a file')
+            res.send(JSON.stringify({ status: 400, msg: "Please upload a file" }));
+            logger.error("Please upload a file'");
+            return;
+        }
+        if (req.body.meta == undefined) {
+            const error = new Error('Please upload a file')
+            res.send(JSON.stringify({ status: 400, msg: "Missed meta parameter" }));
+            logger.error("Missed meta parameter");
+            return;
+        }
+        var meta = req.body.meta;
+        var jsonData = JSON.parse(meta);
 
-    let info_sql = `INSERT INTO information (uuid, fullname, subject_age, subject_cough_type, subject_gender, subject_health_status, note, datetime) VALUES ( '${jsonData.uuid}', '${jsonData.fullname}',${jsonData.subject_age}, '${jsonData.subject_cough_type}', '${jsonData.subject_gender}', '${jsonData.subject_health_status}', '${jsonData.note}', now())`;
-    rows = await model.rawQuery(info_sql);
-    var options = {
-        'method': 'POST',
-        'url': 'https://engine-staging03.aicovidvn.org/api/predict/',
-        'headers': {
-            'accept': 'application/json',
-            'Authorization': 'Bearer 6135fac40749744efe4a58c2012794f9123e97030b3c988db55e24412d0bd39e',
-            'Content-Type': 'multipart/form-data'
-        },
-        formData: {
-            'meta': meta,
-            'audio_file': {
-                'value': fs.createReadStream(file.path),
-                'options': {
-                    'filename': file.filename,
-                    'contentType': null
+        let info_sql = `INSERT INTO information (uuid, fullname, subject_age, subject_cough_type, subject_gender, subject_health_status, note, datetime) VALUES ( '${jsonData.uuid}', '${jsonData.fullname}',${jsonData.subject_age}, '${jsonData.subject_cough_type}', '${jsonData.subject_gender}', '${jsonData.subject_health_status}', '${jsonData.note}', now())`;
+        rows = await model.rawQuery(info_sql);
+        var options = {
+            'method': 'POST',
+            'url': 'https://engine-staging03.aicovidvn.org/api/predict/',
+            'headers': {
+                'accept': 'application/json',
+                'Authorization': 'Bearer 6135fac40749744efe4a58c2012794f9123e97030b3c988db55e24412d0bd39e',
+                'Content-Type': 'multipart/form-data'
+            },
+            formData: {
+                'meta': meta,
+                'audio_file': {
+                    'value': fs.createReadStream(file.path),
+                    'options': {
+                        'filename': file.filename,
+                        'contentType': null
+                    }
                 }
             }
-        }
-    };
-    request(options, function (error, response) {
-        if (error) {
-            rows =  model.rawQuery(`UPDATE information SET response = '${stringify(error)}' WHERE uuid = '${jsonData.uuid}';`);
-            console.log(error);
-            return res.send(JSON.stringify({ status: 400, msg: stringify(error) }));
-        }
-        rows =  model.rawQuery(`UPDATE information SET response = '${response.body}' WHERE uuid = '${jsonData.uuid}';`);
-        console.log(response.body);
-        if (response.statusCode != 200){
-            return res.send(JSON.stringify({ status: 200, msg: response.body}));
-        } 
-        return res.send(JSON.stringify({ status: 200, msg: "Predict success" }));
-    });
+        };
+        request(options, function (error, response) {
+            if (error) {
+                rows = model.rawQuery(`UPDATE information SET response = '${stringify(error)}' WHERE uuid = '${jsonData.uuid}';`);
+                logger.error(error)
+                return res.send(JSON.stringify({ status: 400, msg: stringify(error) }));
+            }
+            rows = model.rawQuery(`UPDATE information SET response = '${response.body}' WHERE uuid = '${jsonData.uuid}';`);
+            console.log(response.body);
+            if (response.statusCode != 200) {
+                return res.send(JSON.stringify({ status: 200, msg: response.body }));
+            }
+            return res.send(JSON.stringify({ status: 200, msg: "Predict success" }));
+        });
+
+    } catch (error) {
+        logger.error(error);
+    }
 
 });
 app.get('/', async function (req, res) {
