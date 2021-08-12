@@ -1,11 +1,11 @@
 const mysql = require('mysql');
-
+var config = require('../config/config.json')
 var conn = mysql.createConnection({
-    host: 'freedb.tech',
-    port: '3306',
-    user: 'freedbtech_tranngoc',
-    password: 'tranngoc',
-    database: 'freedbtech_vietnamese'
+    host: config.db.host,
+    port: config.db.port,
+    user: config.db.user,
+    password: config.db.password,
+    database: config.db.database
 });
 
 function connect() {

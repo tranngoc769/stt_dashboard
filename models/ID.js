@@ -3,7 +3,7 @@ var connection = require('../models/db');
 
 module.exports = {
     getTotal: async() => {
-        var sql = "Select SUM(visit) as visit,SUM(vnsr) as vnsr FROM visitor";
+        var sql = "Select SUM(visit) as visit,SUM(predict) as predict FROM visitor";
         const rows = await connection.querry(sql);
         return rows;
     },
@@ -12,32 +12,11 @@ module.exports = {
         const rows = await connection.querry(sql);
         return rows;
     },
-    updateVisit: async(sql) => {
+    rawQuery: async(sql) => {
         try {
             const rows = await connection.querry(sql);
             return true;
         } catch {
-            return false;
-        }
-    },
-    deleteID: async(id) => {
-        var sql = `DELETE FROM IDtab WHERE id = "${id}"`;
-        try {
-            await connection.querry(sql);
-            return true;
-        } catch (ex) {
-            console.log(ex);
-            return false;
-        }
-    },
-    insertID: async(id) => {
-        var sql = `INSERT INTO IDtab (id) VALUES ("${id}")`;
-        try {
-            await connection.querry(sql);
-
-            return true;
-        } catch (ex) {
-            console.log(ex);
             return false;
         }
     },
