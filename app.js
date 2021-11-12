@@ -16,7 +16,6 @@ var model = require('./models/ID')
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '/public')));
-/* @@END VIEWS ENGINE */
 var http = require("http").Server(app);
 var io = require("socket.io")(http);
 var multer = require('multer');
